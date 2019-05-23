@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 329792758762520464}
   - component: {fileID: 329792758762520465}
   - component: {fileID: 329792758762520471}
-  m_Layer: 0
+  - component: {fileID: 696363087729188008}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,5 +94,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 12
-  normalLaser: {fileID: 6311886785035730312, guid: f9c11d2eff7b8e94989ad4dedad57869,
+  health: 300
+  speedOfLaser: 0
+  firePeriod: 0
+  playerLaser: {fileID: 6311886785035730312, guid: f9c11d2eff7b8e94989ad4dedad57869,
     type: 3}
+  explosion: {fileID: 6798689735687755305, guid: 0eb28e414f7a15c44b56f25741d300c8,
+    type: 3}
+  durationOfExplosion: 1
+  dethSFX: {fileID: 8300000, guid: 1ab2613923dacf048a3a08b2aab55350, type: 3}
+  laserSFX: {fileID: 8300000, guid: 01fd566401477da4d81a42c8f31b507e, type: 3}
+  laserSFXVolume: 0.1
+  dethSFXVolume: 1
+--- !u!61 &696363087729188008
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329792758762520466}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4142857, y: 1.0714285}
+    newSize: {x: 1.98, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4142857, y: 1.0714285}
+  m_EdgeRadius: 0

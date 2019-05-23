@@ -6,11 +6,20 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //Configuration Parameters
+    [Header("player")]
     [Range(1,20)][SerializeField] float moveSpeed;
+    [SerializeField] int health = 200;
+
+    [Header("projectile")]
     [Range(1, 20)] [SerializeField] float speedOfLaser;
     [Range(0, 3)] [SerializeField] float firePeriod;
-
     [SerializeField] GameObject playerLaser;
+    [SerializeField] GameObject explosion;
+    [SerializeField] float durationOfExplosion = 1f;
+    [SerializeField] AudioClip dethSFX;
+    [SerializeField] AudioClip laserSFX;
+    [Range(0, 1)] [SerializeField] float laserSFXVolume = 0.8f;
+    [Range(0, 1)] [SerializeField] float dethSFXVolume = 1f;
 
     Coroutine fireCoroutine;
     float xMin, xMax, yMin, yMax;
@@ -20,7 +29,6 @@ public class Player : MonoBehaviour
     {
         width = GetComponent<SpriteRenderer>().bounds.size.x;
         height = GetComponent<SpriteRenderer>().bounds.size.y;
-        Debug.Log(this.transform.position.x);
         SetUpMoveBoundries();
     }
 
@@ -30,6 +38,31 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) { return; }
+        ProcessHit(other, damageDealer);
+    }
+
+    private void ProcessHit(Collider2D other, DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDemage();
+        damageDealer.Hit();
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        GameObject explosionIns = Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(explosionIns, durationOfExplosion);
+        AudioSource.PlayClipAtPoint(dethSFX, Camera.main.transform.position, dethSFXVolume);
+        Destroy(gameObject);
     }
 
     private void Fire()
@@ -50,6 +83,7 @@ public class Player : MonoBehaviour
         while (true)
         {
             if (Input.GetButtonUp("Fire1")) break;
+            AudioSource.PlayClipAtPoint(laserSFX, Camera.main.transform.position, laserSFXVolume);
             GameObject laser = Instantiate(playerLaser, transform.position, transform.rotation) as GameObject;
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, speedOfLaser);
 
