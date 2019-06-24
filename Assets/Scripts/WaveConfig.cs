@@ -6,9 +6,9 @@ using UnityEngine;
 public class WaveConfig : ScriptableObject
 {
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] GameObject pathPrefab;
+    public GameObject[] pathPrefab;
+    private int pathNumber = 0;
     [SerializeField] float timesBetweeneSpawns = 0.5f;
-    [SerializeField] float timesRandomFactor = 0.3f;
     [SerializeField] int numberOfEnemies;
     [Range(0,10)][SerializeField] float moveSpeed;
 
@@ -19,7 +19,7 @@ public class WaveConfig : ScriptableObject
     {
         var waveWaypoints = new List<Transform>();
 
-        foreach (Transform child in pathPrefab.transform)
+        foreach (Transform child in pathPrefab[pathNumber].transform)
         {
             waveWaypoints.Add(child);
         }
@@ -30,11 +30,14 @@ public class WaveConfig : ScriptableObject
 
     public float GetTimeBeteewneSpawns() { return timesBetweeneSpawns; }
 
-    public float GetRandomFactor() { return timesRandomFactor; }
-
     public int GetNumberOfEnemies() { return numberOfEnemies; }
 
     public float GetMoveSpeed() { return moveSpeed; }
+
+    public void SetPathNumber(int pathNumber)
+    {
+        this.pathNumber = pathNumber;
+    }
 
 }
 

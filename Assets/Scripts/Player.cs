@@ -2,13 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     //Configuration Parameters
     [Header("player")]
     [Range(1,20)][SerializeField] float moveSpeed;
-    [SerializeField] int health = 200;
+    [SerializeField] float startHealth = 200f;
+    private float health;
+    [SerializeField] Image healthBar;
 
     [Header("projectile")]
     [Range(1, 20)] [SerializeField] float speedOfLaser;
@@ -24,9 +27,13 @@ public class Player : MonoBehaviour
     Coroutine fireCoroutine;
     float xMin, xMax, yMin, yMax;
     float width, height;
+
+    [SerializeField]SceneLoader sceneLoader;
+
     // Start is called before the first frame update
     void Start()
     {
+        health = startHealth;
         width = GetComponent<SpriteRenderer>().bounds.size.x;
         height = GetComponent<SpriteRenderer>().bounds.size.y;
         SetUpMoveBoundries();
@@ -38,6 +45,7 @@ public class Player : MonoBehaviour
     {
         Move();
         Fire();
+        UpdateHealthBar();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -63,6 +71,7 @@ public class Player : MonoBehaviour
         Destroy(explosionIns, durationOfExplosion);
         AudioSource.PlayClipAtPoint(dethSFX, Camera.main.transform.position, dethSFXVolume);
         Destroy(gameObject);
+        FindObjectOfType<SceneLoader>().LoadGameOverScene();
     }
 
     private void Fire()
@@ -113,6 +122,11 @@ public class Player : MonoBehaviour
 
         yMin = gameCamer.ViewportToWorldPoint(new Vector3(0, 0, 0)).y;
         yMax = gameCamer.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBar.fillAmount = health / startHealth;
     }
 }
 

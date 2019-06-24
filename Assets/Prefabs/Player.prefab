@@ -99,7 +99,7 @@ MonoBehaviour:
   firePeriod: 0
   playerLaser: {fileID: 6311886785035730312, guid: f9c11d2eff7b8e94989ad4dedad57869,
     type: 3}
-  explosion: {fileID: 6798689735687755305, guid: 0eb28e414f7a15c44b56f25741d300c8,
+  explosion: {fileID: 6798689735687755305, guid: e096bc8a29483f24ea10a14466dcaf86,
     type: 3}
   durationOfExplosion: 1
   dethSFX: {fileID: 8300000, guid: 1ab2613923dacf048a3a08b2aab55350, type: 3}

@@ -63,12 +63,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BackgruondScroller.cs" />
+    <Compile Include="Assets\Scripts\BiggerButton.cs" />
+    <Compile Include="Assets\Scripts\Boss\BaseState.cs" />
+    <Compile Include="Assets\Scripts\Boss\Boss.cs" />
+    <Compile Include="Assets\Scripts\Boss\FinalState.cs" />
+    <Compile Include="Assets\Scripts\Boss\State1.cs" />
+    <Compile Include="Assets\Scripts\Boss\State2.cs" />
     <Compile Include="Assets\Scripts\DamageDealer.cs" />
+    <Compile Include="Assets\Scripts\DesplayScore.cs" />
+    <Compile Include="Assets\Scripts\EndButton.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyPathing.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\LaserShredder.cs" />
+    <Compile Include="Assets\Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\Spinner.cs" />
     <Compile Include="Assets\Scripts\WaveConfig.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
